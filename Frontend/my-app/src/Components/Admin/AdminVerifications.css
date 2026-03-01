@@ -1,0 +1,158 @@
+/* src/Components/Admin/AdminVerifications.css */
+.admin-verifications {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.verifications-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.verifications-header h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: #f8f9fa;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  background: #3498db;
+  color: white;
+}
+
+.tab:hover:not(.active) {
+  background: #e9ecef;
+}
+
+.verifications-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.verification-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  border-left: 4px solid #3498db;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.candidate-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.candidate-photo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e9ecef;
+}
+
+.candidate-details h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.candidate-details p {
+  margin: 0.25rem 0;
+  color: #5a6c7d;
+  font-size: 0.9rem;
+}
+
+.verification-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-approve, .btn-reject {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.btn-approve {
+  background: #27ae60;
+  color: white;
+}
+
+.btn-approve:hover {
+  background: #219a52;
+}
+
+.btn-reject {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-reject:hover {
+  background: #c0392b;
+}
+
+.loading, .no-pending {
+  text-align: center;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.no-pending h3 {
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.no-pending p {
+  color: #95a5a6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .verification-item {
+    flex-direction: column;
+  }
+
+  .candidate-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .verification-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-verifications {
+    padding: 1rem;
+  }
+}

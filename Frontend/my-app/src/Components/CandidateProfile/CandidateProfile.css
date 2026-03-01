@@ -1,0 +1,833 @@
+/* CandidateProfile.css */
+
+/* Main Container */
+.candidate-profile {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Theme Variations */
+.candidate-profile.light {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.candidate-profile.dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Loading State */
+.candidate-profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  min-height: 50vh;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.candidate-profile-loading p {
+  font-size: 18px;
+  color: #666;
+}
+
+.dark .candidate-profile-loading p {
+  color: #ccc;
+}
+
+/* Error State */
+.candidate-profile-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.error-content {
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.light .error-content {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.dark .error-content {
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+}
+
+.error-content h3 {
+  color: #dc3545;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.error-content p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  color: #6c757d;
+}
+
+.dark .error-content p {
+  color: #a0aec0;
+}
+
+.error-help {
+  font-style: italic;
+  color: #6c757d !important;
+}
+
+.dark .error-help {
+  color: #718096 !important;
+}
+
+/* Error Actions */
+.error-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.retry-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+  background-color: #0056b3;
+}
+
+.back-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #545b62;
+}
+
+/* Debug Info */
+.debug-info {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.dark .debug-info {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.debug-info p {
+  margin: 4px 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.navigation-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark .navigation-button {
+  background-color: #2d3748;
+}
+
+.dark .navigation-button:hover {
+  background-color: #4a5568;
+}
+
+/* Candidate Header */
+.candidate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.light .candidate-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.dark .candidate-header {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: white;
+}
+
+.candidate-basic-info {
+  flex: 1;
+}
+
+.candidate-name {
+  font-size: 2.5em;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.candidate-party {
+  font-size: 1.3em;
+  margin: 0 0 12px 0;
+  opacity: 0.9;
+}
+
+.candidate-status {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.candidate-status.verified {
+  background-color: rgba(40, 167, 69, 0.2);
+  border: 1px solid #28a745;
+  color: #28a745;
+}
+
+.candidate-status.pending {
+  background-color: rgba(255, 193, 7, 0.2);
+  border: 1px solid #ffc107;
+  color: #ffc107;
+}
+
+.dark .candidate-status.verified {
+  background-color: rgba(40, 167, 69, 0.3);
+  color: #75b798;
+}
+
+.dark .candidate-status.pending {
+  background-color: rgba(255, 193, 7, 0.3);
+  color: #ffd765;
+}
+
+.candidate-photo {
+  margin-left: 30px;
+}
+
+.candidate-photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.candidate-photo img:hover {
+  transform: scale(1.05);
+}
+
+/* Candidate Details */
+.candidate-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.detail-section {
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.light .detail-section {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.dark .detail-section {
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+}
+
+.detail-section h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+.dark .detail-section h3 {
+  color: #63b3ed;
+  border-bottom-color: #63b3ed;
+}
+
+.detail-section p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.dark .detail-section p {
+  color: #e2e8f0;
+}
+
+/* Candidate Description */
+.candidate-description {
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.light .candidate-description {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.dark .candidate-description {
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+}
+
+.candidate-description h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #007bff;
+}
+
+.dark .candidate-description h3 {
+  color: #63b3ed;
+}
+
+.candidate-description-content {
+  line-height: 1.8;
+}
+
+.light .candidate-description-content {
+  color: #555;
+}
+
+.dark .candidate-description-content {
+  color: #e2e8f0;
+}
+
+/* Projects Section */
+.candidate-projects {
+  margin-bottom: 40px;
+}
+
+.candidate-projects h2 {
+  color: #007bff;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 8px;
+}
+
+.dark .candidate-projects h2 {
+  color: #63b3ed;
+  border-bottom-color: #63b3ed;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  padding: 24px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.light .project-card {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.dark .project-card {
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: #007bff;
+  font-size: 1.3em;
+}
+
+.dark .project-card h3 {
+  color: #63b3ed;
+}
+
+.project-description {
+  margin: 12px 0;
+  line-height: 1.6;
+  color: #666;
+}
+
+.dark .project-description {
+  color: #a0aec0;
+}
+
+.project-links {
+  margin: 16px 0;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.project-link:hover {
+  background-color: #0056b3;
+}
+
+/* Project Attachments */
+.project-attachments {
+  margin-top: 16px;
+}
+
+.project-attachments strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+.dark .project-attachments strong {
+  color: #cbd5e0;
+}
+
+.attachments-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.attachment-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid transparent;
+}
+
+.attachment-thumbnail:hover {
+  transform: scale(1.1);
+  border-color: #007bff;
+}
+
+.file-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.dark .file-icon-link {
+  border-color: #4a5568;
+}
+
+.file-icon-link:hover {
+  border-color: #007bff;
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.pdf-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.file-icon {
+  font-size: 24px;
+  color: #666;
+}
+
+.dark .file-icon {
+  color: #a0aec0;
+}
+
+.more-attachments {
+  margin-top: 8px;
+  font-style: italic;
+  color: #666;
+}
+
+.dark .more-attachments {
+  color: #a0aec0;
+}
+
+/* No Projects State */
+.no-projects {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+.dark .no-projects {
+  color: #a0aec0;
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+/* Image Modal */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5em;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: #ff6b6b;
+}
+
+/* Complaints Section */
+.complaints-section {
+  margin-top: 40px;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.light .complaints-section {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+.dark .complaints-section {
+  background-color: #2d3748;
+  border: 1px solid #4a5568;
+}
+
+.complaints-section h2 {
+  color: #007bff;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 8px;
+}
+
+.dark .complaints-section h2 {
+  color: #63b3ed;
+  border-bottom-color: #63b3ed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .candidate-profile {
+    padding: 15px;
+  }
+
+  .candidate-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .candidate-photo {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .candidate-photo img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .candidate-name {
+    font-size: 2em;
+  }
+
+  .candidate-details {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .navigation-buttons {
+    gap: 8px;
+  }
+
+  .navigation-button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .retry-button,
+  .back-button {
+    width: 200px;
+  }
+
+  .debug-info {
+    font-size: 12px;
+  }
+
+  .detail-section,
+  .candidate-description {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .candidate-name {
+    font-size: 1.7em;
+  }
+
+  .candidate-party {
+    font-size: 1.1em;
+  }
+
+  .navigation-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .navigation-button span {
+    display: none;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    padding: 16px;
+  }
+
+  .error-content {
+    padding: 20px;
+  }
+
+  .retry-button,
+  .back-button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navigation-buttons,
+  .error-actions,
+  .image-modal,
+  .complaints-section {
+    display: none;
+  }
+
+  .candidate-profile {
+    color: black;
+    background: white;
+    padding: 0;
+  }
+
+  .candidate-header {
+    background: lightgray !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  .candidate-photo img {
+    border: 2px solid #333;
+  }
+
+  .project-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner,
+  .navigation-button,
+  .candidate-photo img,
+  .project-card,
+  .attachment-thumbnail,
+  .file-icon-link,
+  .image-modal,
+  .modal-content {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.navigation-button:focus,
+.retry-button:focus,
+.back-button:focus,
+.project-link:focus,
+.file-icon-link:focus,
+.close-modal:focus {
+  outline: 3px solid #007bff;
+  outline-offset: 2px;
+}
+
+.dark .navigation-button:focus,
+.dark .retry-button:focus,
+.dark .back-button:focus,
+.dark .project-link:focus,
+.dark .file-icon-link:focus,
+.dark .close-modal:focus {
+  outline-color: #63b3ed;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .candidate-header {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  .detail-section,
+  .candidate-description,
+  .project-card {
+    border: 2px solid !important;
+  }
+
+  .navigation-button,
+  .retry-button,
+  .back-button,
+  .project-link {
+    border: 2px solid !important;
+  }
+}

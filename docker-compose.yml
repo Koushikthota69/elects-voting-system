@@ -1,0 +1,66 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: voting_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: ElectSDatabase
+    volumes:
+      - mongodb_data:/data/db
+      - ./backend/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - voting_network
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: voting_backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - CONNECTION_STRING=mongodb://admin:password@mongodb:27017/ElectSDatabase?authSource=admin
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/ElectSDatabase?authSource=admin
+      - JWT_SECRET=mysecretjwtkey
+      - EMAIL=thotakoushik69@gmail.com
+      - EMAIL_PASSWORD=jory ksjd ancr rvxu
+      - CLOUDINARY_CLOUD_NAME=dmbphmfdu
+      - CLOUDINARY_API_KEY=914799374676689
+      - CLOUDINARY_API_SECRET=YHecbYhQNTvWklHgnDTUZFTx6kM
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - voting_network
+
+  frontend:
+    build:
+      context: ./frontend/my-app
+      dockerfile: Dockerfile
+    container_name: voting_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_BASE_URL=http://localhost:5000
+    depends_on:
+      - backend
+    networks:
+      - voting_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  voting_network:
+    driver: bridge
