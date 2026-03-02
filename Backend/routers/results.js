@@ -5,6 +5,13 @@ const User = require('../models/user');
 const Candidate = require('../models/candidate');
 const router = express.Router();
 
+const getModels = () => ({
+  Election: mongoose.model("Election"),
+  PresidentialElection: mongoose.model("PresidentialElection"),
+  ParlimentaryElection: mongoose.model("ParlimentaryElection"),
+  ProvincialElection: mongoose.model("ProvincialElection")
+});
+
 // ✅ FIXED: GET General Election Results with PROPER candidate matching
 router.get('/general/:electionId', async (req, res) => {
   try {
@@ -20,6 +27,7 @@ router.get('/general/:electionId', async (req, res) => {
     }
 
     const Election = mongoose.model('Election');
+    const { Election } = getModels();
     const election = await Election.findById(electionId)
       .populate({
         path: 'candidates',
@@ -183,6 +191,7 @@ router.get('/presidential/:electionId', async (req, res) => {
     }
 
     const PresidentialElection = mongoose.model('PresidentialElection');
+    const { PresidentialElection } = getModels();
     const election = await PresidentialElection.findById(electionId)
       .populate({
         path: 'candidates',
@@ -300,6 +309,7 @@ router.get('/parlimentary/:electionId', async (req, res) => {
     }
 
     const ParlimentaryElection = mongoose.model('ParlimentaryElection');
+    const { ParlimentaryElection } = getModels();
     const election = await ParlimentaryElection.findById(electionId)
       .populate({
         path: 'candidates',
@@ -417,6 +427,7 @@ router.get('/provincial/:electionId', async (req, res) => {
     }
 
     const ProvincialElection = mongoose.model('ProvincialElection');
+    const { ProvincialElection } = getModels();
     const election = await ProvincialElection.findById(electionId)
       .populate({
         path: 'candidates',
