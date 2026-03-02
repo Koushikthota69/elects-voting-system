@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+require('../models/ParlimentaryElection'); 
 
 const ParlimentaryElection = mongoose.model('ParliamentaryElection');
 const Candidate = mongoose.model('Candidate');

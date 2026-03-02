@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+require('../models/ProvincialElection');
 // ✅ FIXED: Use mongoose.model() instead of direct imports
 const ProvincialElection = mongoose.model('ProvincialElection');
 const Candidate = mongoose.model('Candidate');
