@@ -314,7 +314,7 @@ router.get('/parlimentary/:electionId', async (req, res) => {
       });
     }
 
-    const ParlimentaryElection = mongoose.model('ParlimentaryElection');
+    const ParlimentaryElection = mongoose.model('ParliamentaryElection');
     const election = await getModels().ParlimentaryElection.findById(electionId)
       .populate({
         path: 'candidates',
