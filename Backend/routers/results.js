@@ -1,9 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Election = mongoose.model('Election');
-const PresidentialElection = mongoose.model('PresidentialElection');
-const ParlimentaryElection = mongoose.model('ParlimentaryElection');
-const ProvincialElection = mongoose.model('ProvincialElection');
+
 const User = require('../models/user');
 const Candidate = require('../models/candidate');
 const router = express.Router();
@@ -22,6 +19,7 @@ router.get('/general/:electionId', async (req, res) => {
       });
     }
 
+    const Election = mongoose.model('Election');
     const election = await Election.findById(electionId)
       .populate({
         path: 'candidates',
@@ -184,6 +182,7 @@ router.get('/presidential/:electionId', async (req, res) => {
       });
     }
 
+    const PresidentialElection = mongoose.model('PresidentialElection');
     const election = await PresidentialElection.findById(electionId)
       .populate({
         path: 'candidates',
@@ -300,6 +299,7 @@ router.get('/parlimentary/:electionId', async (req, res) => {
       });
     }
 
+    const ParlimentaryElection = mongoose.model('ParlimentaryElection');
     const election = await ParlimentaryElection.findById(electionId)
       .populate({
         path: 'candidates',
@@ -416,6 +416,7 @@ router.get('/provincial/:electionId', async (req, res) => {
       });
     }
 
+    const ProvincialElection = mongoose.model('ProvincialElection');
     const election = await ProvincialElection.findById(electionId)
       .populate({
         path: 'candidates',
