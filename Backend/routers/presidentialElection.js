@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+require('../models/presidentialElection');
 // ✅ FIXED: Correct model imports using mongoose.model()
 const PresidentialElection = mongoose.model('PresidentialElection');
 const Candidate = mongoose.model('Candidate');
