@@ -1,5 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('../models/election');
+require('../models/presidentialElection');
+require('../models/ParlimentaryElection');
+require('../models/ProvincialElection');
+const User = require('../models/user');
+const Candidate = require('../models/candidate');
+const express = require('express');
+const mongoose = require('mongoose');
 
 const User = require('../models/user');
 const Candidate = require('../models/candidate');
