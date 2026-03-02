@@ -2,21 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('../models/election');
 require('../models/presidentialElection');
-require('../models/ParlimentaryElection');
+require('../models/ParliamentaryElection');
 require('../models/ProvincialElection');
 const User = require('../models/user');
 const Candidate = require('../models/candidate');
-const express = require('express');
-const mongoose = require('mongoose');
 
-const User = require('../models/user');
-const Candidate = require('../models/candidate');
 const router = express.Router();
 
 const getModels = () => ({
   Election: mongoose.model("Election"),
   PresidentialElection: mongoose.model("PresidentialElection"),
-  ParlimentaryElection: mongoose.model("ParlimentaryElection"),
+  ParliamentaryElection: mongoose.model("ParliamentaryElection"),
   ProvincialElection: mongoose.model("ProvincialElection")
 });
 
@@ -314,8 +310,8 @@ router.get('/parlimentary/:electionId', async (req, res) => {
       });
     }
 
-    const ParlimentaryElection = mongoose.model('ParliamentaryElection');
-    const election = await getModels().ParlimentaryElection.findById(electionId)
+    const ParliamentaryElection = mongoose.model('ParliamentaryElection');
+    const election = await getModels().ParliamentaryElection.findById(electionId)
       .populate({
         path: 'candidates',
         populate: [
