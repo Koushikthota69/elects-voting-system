@@ -42,5 +42,5 @@ ParlimentaryElectionSchema.virtual('formattedDate').get(function() {
     }
 });
 
-const ParlimentaryElection = mongoose.model('ParliamentaryElection', ParlimentaryElectionSchema);
-module.exports = { ParlimentaryElection };
+const ParlimentaryElection = mongoose.model('ParlimentaryElection', ParlimentaryElectionSchema);
+module.exports = ParlimentaryElection;
