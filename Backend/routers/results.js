@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { Election } = require('../models/election');
-const { PresidentialElection } = require('../models/presidentialElection');
-const { ParlimentaryElection } = require('../models/ParlimentaryElection');
-const { ProvincialElection } = require('../models/ProvincialElection');
-const { User } = require('../models/user');
-const { Candidate } = require('../models/candidate');
+const Election = require('../models/election');
+const PresidentialElection = require('../models/presidentialElection');
+const ParlimentaryElection = require('../models/ParlimentaryElection');
+const ProvincialElection = require('../models/ProvincialElection');
+const User = require('../models/user');
+const Candidate = require('../models/candidate');
 const router = express.Router();
 
 // ✅ FIXED: GET General Election Results with PROPER candidate matching
