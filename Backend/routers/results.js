@@ -27,8 +27,7 @@ router.get('/general/:electionId', async (req, res) => {
     }
 
     const Election = mongoose.model('Election');
-    const { Election } = getModels();
-    const election = await Election.findById(electionId)
+    const election = await getModels().Election.findById(electionId)
       .populate({
         path: 'candidates',
         populate: [
@@ -191,8 +190,7 @@ router.get('/presidential/:electionId', async (req, res) => {
     }
 
     const PresidentialElection = mongoose.model('PresidentialElection');
-    const { PresidentialElection } = getModels();
-    const election = await PresidentialElection.findById(electionId)
+    const election = await getModels().PresidentialElection.findById(electionId)
       .populate({
         path: 'candidates',
         populate: [
@@ -309,8 +307,7 @@ router.get('/parlimentary/:electionId', async (req, res) => {
     }
 
     const ParlimentaryElection = mongoose.model('ParlimentaryElection');
-    const { ParlimentaryElection } = getModels();
-    const election = await ParlimentaryElection.findById(electionId)
+    const election = await getModels().ParlimentaryElection.findById(electionId)
       .populate({
         path: 'candidates',
         populate: [
@@ -427,8 +424,7 @@ router.get('/provincial/:electionId', async (req, res) => {
     }
 
     const ProvincialElection = mongoose.model('ProvincialElection');
-    const { ProvincialElection } = getModels();
-    const election = await ProvincialElection.findById(electionId)
+    const election = await getModels().ProvincialElection.findById(electionId)
       .populate({
         path: 'candidates',
         populate: [
