@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 require('../models/ParlimentaryElection'); 
 
-const ParlimentaryElection = mongoose.model('ParliamentaryElection');
+const ParlimentaryElection = mongoose.model('ParlimentaryElection');
 const Candidate = mongoose.model('Candidate');
 const User = mongoose.model('User');
 
