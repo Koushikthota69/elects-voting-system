@@ -7,7 +7,6 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import './CSS/Home.css';
-import ProjectSlides from '../Components/ProjectSlides/ProjectSlides';
 
 const API_BASE = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
 
@@ -23,7 +22,6 @@ const Home = () => {
             const userId = localStorage.getItem('user-id');
             const token = localStorage.getItem('auth-token');
 
-            // Don't check if no user is logged in or invalid user ID
             if (!userId || userId === 'null' || userId === 'undefined') {
                 console.log('No valid user ID found, skipping photo expiry check');
                 return;
@@ -53,7 +51,6 @@ const Home = () => {
                     response: error.response?.data,
                     status: error.response?.status
                 });
-                // Don't show error toast for 404 or unauthorized
                 if (error.response?.status !== 404 && error.response?.status !== 401) {
                     toast.error('Failed to verify photo expiry.');
                 }
@@ -87,7 +84,6 @@ const Home = () => {
 
         try {
             setLoading(true);
-            // Convert base64 to Blob
             const byteString = atob(capturedPhoto.split(',')[1]);
             const arrayBuffer = new ArrayBuffer(byteString.length);
             const uintArray = new Uint8Array(arrayBuffer);
@@ -98,7 +94,7 @@ const Home = () => {
 
             const formData = new FormData();
             formData.append('realtimePhoto', blob, 'realtimePhoto.jpg');
-            
+
             await axios.put(`${API_BASE}/api/v1/users/updatephoto/${userId}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -148,7 +144,7 @@ const Home = () => {
                     <button onClick={handlePhotoCapture} className="capture-button">Capture Photo</button>
                 </div>
             )}
-            
+
             {capturedPhoto && (
                 <div className="modal">
                     <div className="modal-content">
@@ -159,9 +155,9 @@ const Home = () => {
                                 {loading ? 'Updating...' : 'OK Update This'}
                             </button>
                             <button onClick={() => {
-                                setCapturedPhoto(null); 
+                                setCapturedPhoto(null);
                                 setIsWebcamOpen(true);
-                            }} 
+                            }}
                             className="try-again-button">Try Again</button>
                             <button onClick={handleLogout} className="cancel-button">Later</button>
                         </div>
@@ -170,7 +166,6 @@ const Home = () => {
             )}
 
             <Welcome />
-            <ProjectSlides/>
             <Feature />
             <FandQ />
         </div>

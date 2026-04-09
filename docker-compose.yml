@@ -29,8 +29,9 @@ services:
       - CONNECTION_STRING=mongodb://admin:password@mongodb:27017/ElectSDatabase?authSource=admin
       - MONGODB_URI=mongodb://admin:password@mongodb:27017/ElectSDatabase?authSource=admin
       - JWT_SECRET=mysecretjwtkey
-      - EMAIL=thotakoushik69@gmail.com
-      - EMAIL_PASSWORD=jory ksjd ancr rvxu
+      # ✅ FIXED: Match the variable names used in emailService.js
+      - GMAIL_USER=thotakoushik69@gmail.com
+      - GMAIL_APP_PASSWORD=xyjb mizg bnye skec
       - CLOUDINARY_CLOUD_NAME=dmbphmfdu
       - CLOUDINARY_API_KEY=914799374676689
       - CLOUDINARY_API_SECRET=YHecbYhQNTvWklHgnDTUZFTx6kM

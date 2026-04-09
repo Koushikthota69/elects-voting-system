@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const electionSchema = mongoose.Schema({
     name: { type: String, required: true },
     where: { type: String, required: true },
-    date: { type: String, required: true },  // ✅ CHANGED: Date -> String
+    date: { type: String, required: true },
     startTime: { type: String, required: true },
     endTime: { type: String, required: true },
     description: { type: String, required: true },
@@ -29,44 +29,59 @@ const electionSchema = mongoose.Schema({
     isCompleted: { type: Boolean, default: false }
 });
 
-// ✅ Virtual for formatted date
 electionSchema.virtual('formattedDate').get(function() {
     if (!this.date) return 'Invalid Date';
     try {
         const date = new Date(this.date);
         return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+            year: 'numeric', month: 'long', day: 'numeric'
         });
     } catch (error) {
         return 'Invalid Date';
     }
 });
 
-// ✅ Method to check if election is active
+// ✅ FIXED isActive - handles IST timezone correctly
 electionSchema.methods.isActive = function() {
     try {
         const now = new Date();
+
         const electionDate = new Date(this.date);
+        const [startHours, startMinutes] = this.startTime.split(':').map(Number);
+        const [endHours, endMinutes] = this.endTime.split(':').map(Number);
 
-        const [startHours, startMinutes] = this.startTime.split(':');
-        const [endHours, endMinutes] = this.endTime.split(':');
+        // Build IST datetime then convert to UTC for comparison
+        const startIST = new Date(Date.UTC(
+            electionDate.getFullYear(),
+            electionDate.getMonth(),
+            electionDate.getDate(),
+            startHours,
+            startMinutes,
+            0, 0
+        ));
+        const startUTC = new Date(startIST.getTime() - (5.5 * 60 * 60 * 1000));
 
-        const startDateTime = new Date(electionDate);
-        startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0, 0);
+        const endIST = new Date(Date.UTC(
+            electionDate.getFullYear(),
+            electionDate.getMonth(),
+            electionDate.getDate(),
+            endHours,
+            endMinutes,
+            0, 0
+        ));
+        const endUTC = new Date(endIST.getTime() - (5.5 * 60 * 60 * 1000));
 
-        const endDateTime = new Date(electionDate);
-        endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0, 0);
+        console.log('🕐 Now (UTC):', now.toISOString());
+        console.log('⏰ Start (UTC):', startUTC.toISOString());
+        console.log('⏰ End (UTC):', endUTC.toISOString());
+        console.log('✅ isActive:', now >= startUTC && now <= endUTC);
 
-        return now >= startDateTime && now <= endDateTime;
+        return now >= startUTC && now <= endUTC;
     } catch (error) {
+        console.error('❌ isActive error:', error);
         return false;
     }
 };
 
-// ✅ FIX: Register the model directly (not via exports.Election)
-// This ensures mongoose.model('Election') works everywhere
 const Election = mongoose.model('Election', electionSchema);
-
 module.exports = Election;

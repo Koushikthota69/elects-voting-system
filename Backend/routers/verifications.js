@@ -510,8 +510,8 @@ router.post('/facerecognition/verify', authMiddleware, (req, res) => {
 
       console.log('📊 Pure JS face comparison result - Similarity:', (similarity * 100).toFixed(1) + '%');
 
-      const HIGH_SECURITY_THRESHOLD = 0.35; // 75% similarity required for Pure JS
-      const MEDIUM_SECURITY_THRESHOLD = 0.30; // 65% for medium security
+      const HIGH_SECURITY_THRESHOLD = 0.20; // 75% similarity required for Pure JS
+      const MEDIUM_SECURITY_THRESHOLD = 0.15; // 65% for medium security
 
       const isMatch = similarity >= HIGH_SECURITY_THRESHOLD;
       const isPartialMatch = similarity >= MEDIUM_SECURITY_THRESHOLD && similarity < HIGH_SECURITY_THRESHOLD;
